@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"log"
+	"fmt"
 
 	"github.com/eyedeekay/amo-version/lib"
 )
@@ -36,6 +36,11 @@ var (
 		false,
 		"Download the extension.xpi file",
 	)
+	version = flag.Bool(
+		"v",
+		false,
+		"display version number only",
+	)
 	end = "/addon/"
 )
 
@@ -45,9 +50,13 @@ func main() {
 	amo.Lang = *lang
 	amo.Platform = *platform
 	amo.Name = *name
-	log.Println(*name)
-	log.Println("\t", amo.VersionString())
-	log.Println("\t", amo.DownloadURL())
+	if !*version {
+		fmt.Println(*name)
+	}
+	fmt.Println(amo.VersionString())
+	if !*version {
+		fmt.Println(amo.DownloadURL())
+	}
 	if *download {
 		amo.DownloadFile(*name + ".xpi")
 	}
