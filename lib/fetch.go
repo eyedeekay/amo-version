@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 var (
@@ -40,6 +41,14 @@ func DownloadURL() string {
 	val, _ := sel.Attr("href")
 	//val, _ := doc.Html()
 	//val, _ := sel.Html()
+	return val
+}
+
+func ExtID() string {
+	durl := DownloadURL()
+	//val, _ := doc.Html()
+	//val, _ := sel.Html()
+	val := strings.Split(strings.Replace(durl, "https://addons.mozilla.org/firefox/downloads/file/", "", -1), "/")[0]
 	return val
 }
 

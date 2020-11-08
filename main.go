@@ -41,6 +41,11 @@ var (
 		false,
 		"display version number only",
 	)
+	id = flag.Bool(
+		"i",
+		false,
+		"print the extension ID",
+	)
 	end = "/addon/"
 )
 
@@ -56,6 +61,9 @@ func main() {
 	fmt.Println(amo.VersionString())
 	if !*version {
 		fmt.Println(amo.DownloadURL())
+	}
+	if *id {
+		fmt.Println(amo.ExtID())
 	}
 	if *download {
 		amo.DownloadFile(*name + ".xpi")
