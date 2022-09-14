@@ -16,9 +16,9 @@ Used to download Firefox extensions from the Mozilla Addons store.
   -n string
     	name of the extension to look up, if you don't know the ID. Must match the AMO page. (default "i2p-in-private-browsing")
   -o string
-    	Output the file to a specific path (default "/home/idk/go/src/github.com/eyedeekay/amo-version/i2p-in-private-browsing.xpi")
+    	Output the file to a specific path (default "$PWD/i2p-in-private-browsing.xpi")
   -od string
-    	Output the file to a specific directory (default "/home/idk/go/src/github.com/eyedeekay/amo-version")
+    	Output the file to a specific directory (default "$PWD")
   -p string
     	Platform to download the extension for. firefox or android. (default "firefox")
   -v	display version number only
