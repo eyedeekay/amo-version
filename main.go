@@ -3,8 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
+	"path/filepath"
 
-	"github.com/eyedeekay/amo-version/lib"
+	amo "github.com/eyedeekay/amo-version/lib"
 )
 
 // input: https://addons.mozilla.org/en-US/firefox/addon/i2p-in-private-browsing/
@@ -46,8 +48,34 @@ var (
 		false,
 		"print the extension ID",
 	)
-	end = "/addon/"
+	outpath = flag.String(
+		"o",
+		defaultPath(),
+		"Output the file to a specific path",
+	)
+	outdir = flag.String(
+		"od",
+		defaultDir(),
+		"Output the file to a specific directory",
+	)
+	extract = flag.Bool(
+		"x",
+		false,
+		"extract the file after downloading it",
+	)
 )
+
+func defaultDir() string {
+	wd, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+	return wd
+}
+
+func defaultPath() string {
+	return filepath.Join(*outdir, *name+".xpi")
+}
 
 func main() {
 	flag.Parse()
@@ -66,6 +94,10 @@ func main() {
 		fmt.Println(amo.ExtID())
 	}
 	if *download {
-		amo.DownloadFile(*name + ".xpi")
+		os.MkdirAll(*outdir, 0755)
+		amo.DownloadFile(*outpath)
+		if *extract {
+			amo.Unzip(*outpath)
+		}
 	}
 }

@@ -1,14 +1,25 @@
 package amo
 
 import (
-	"github.com/PuerkitoBio/goquery"
-
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/PuerkitoBio/goquery"
+	"github.com/artdarek/go-unzip/pkg/unzip"
 )
+
+func Unzip(path string) {
+	uz := unzip.New()
+	dir := strings.TrimRight(path, ".xpi")
+
+	_, err := uz.Extract(path, dir)
+	if err != nil {
+		panic(err)
+	}
+}
 
 var (
 	Begin    = "https://addons.mozilla.org/"
