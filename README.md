@@ -1,5 +1,7 @@
 # Firefox Addon Downloader for Go(amo-version)
 
+Used to download Firefox extensions from the Mozilla Addons store.
+
  - **Status:** Maintained.
 
 ## Usage of amo-version:
