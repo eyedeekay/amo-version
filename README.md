@@ -6,6 +6,7 @@ Used to download Firefox extensions from the Mozilla Addons store.
 
 ## Usage of amo-version:
 
+```sh
   -amo-url string
     	URL to check for extensions at (default "https://addons.mozilla.org/")
   -c string
@@ -22,3 +23,4 @@ Used to download Firefox extensions from the Mozilla Addons store.
     	Platform to download the extension for. firefox or android. (default "firefox")
   -v	display version number only
   -x	extract the file after downloading it
+```
