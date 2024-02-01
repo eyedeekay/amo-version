@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"syscall"
 
 	amo "github.com/eyedeekay/amo-version/lib"
 )
@@ -97,6 +98,10 @@ func main() {
 		os.MkdirAll(*outdir, 0755)
 		amo.DownloadFile(*outpath)
 		if *extract {
+			oldmask := syscall.Umask(777)
+			if oldmask != 0 {
+				fmt.Println("UMASK set to 777 for process")
+			}
 			amo.Unzip(*outpath)
 		}
 	}

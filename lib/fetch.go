@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/artdarek/go-unzip/pkg/unzip"
+	"github.com/eyedeekay/go-unzip/pkg/unzip"
 )
 
 func Unzip(path string) {
